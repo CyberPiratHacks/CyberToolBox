@@ -1,19 +1,38 @@
 #!/bin/bash
 
-# Verifique se o script está sendo executado como root
+# Instalando R
+
+# Instalando depedencias:
+echo -e "Instalando dependencias, por favor aguarde...":
+sudo apt install python3
+clear
+sudo apt install python3-pip
+clear
+pip3 install colorama
+clear
+pip3 install requests 
+clear
+pip3 install timedelta
+clear
+pip3 install http.client
+clear
+pip3 install argparse
+clear 
+
+# Verifique se o script estÃ¡ sendo executado como root
 if [ "$EUID" -ne 0 ]; then
     echo -e "\e[91mPor favor, execute o script como root (sudo)!\e[0m"
     exit
 fi
 
-# Verifique se o colorama está instalado
+# Verifique se o colorama estÃ¡ instalado
 if ! [ -x "$(command -v python3 -m colorama)" ]; then
-    echo -e "Colorama não está instalado. Instalando..."
+    echo -e "Colorama nÃ£o estÃ¡ instalado. Instalando..."
     pip3 install colorama
 fi
 
 # Importando colorama e inicializando
-# Você também pode adicionar esse bloco ao seu script Python diretamente
+# VocÃª tambÃ©m pode adicionar esse bloco ao seu script Python diretamente
 python3 - <<'EOF'
 from colorama import init, Fore
 
@@ -39,8 +58,8 @@ echo -e "${VIOLET}     /____/                                                   
 # Nome do desenvolvedor
 echo -e "${RED}Ferramentas e instalador escrito por ${NC}${GREEN}David A. Mascaro${NC}"
 
-# Avisando ao usuário
-echo -e "\n${RED}ATENÇÃO:${NC} Este script deve ser executado como root (sudo) para garantir a instalação adequada das ferramentas."
+# Avisando ao usuÃ¡rio
+echo -e "\n${RED}ATENÃ‡ÃƒO:${NC} Este script deve ser executado como root (sudo) para garantir a instalaÃ§Ã£o adequada das ferramentas."
 
 # DANDO UPDATE NO SISTEMA:
 echo -e "\n${GREEN}Deseja realizar update dos pacotes APT do Kernel e atualizar o sistema?${NC}" "${RED}(s/n)${NC}"
@@ -72,7 +91,7 @@ else
 fi
 
 # ISTALANDO MINHAS FERRAMENTAS:
-echo -e "\n${GREEN}Quais ferramentas você deseja instalar?\n"
+echo -e "\n${GREEN}Quais ferramentas vocÃª deseja instalar?\n"
 echo -e "${BLUE}[1] DDG-OSINT ${NC}(Ideal para Dorks e salvar links em larga escala)"
 echo -e "${BLUE}[2] LUCYLEAKS ${NC}(Ideal para buscar vazamentos e salvar as hashes de senhas para uso posterior)"
 echo -e "${BLUE}[3] Sair${NC}"
@@ -81,7 +100,7 @@ read -r ferramenta
 case "$ferramenta" in
     1)
         # Instalar DDG-OSINT
-        echo -e "${BLUE}Clonando o repositório DDG-OSINT...${NC}"
+        echo -e "${BLUE}Clonando o repositÃ³rio DDG-OSINT...${NC}"
         git clone https://github.com/CyberPiratHacks/DDG-OSINT.git
         clear
         echo -e "${RED}Executando ferramenta...${NC}" 
@@ -91,7 +110,7 @@ case "$ferramenta" in
         ;;
     2)
         # Instalar LUCYLEAKS
-        echo -e "${BLUE}Clonando o repositório LUCYLEAKS...${NC}"
+        echo -e "${BLUE}Clonando o repositÃ³rio LUCYLEAKS...${NC}"
         git clone https://github.com/CyberPiratHacks/lucyleaks02.git
         clear
         echo -e "${GREEN}LUCYLEAKS instalado com sucesso!${NC}"
@@ -103,6 +122,6 @@ case "$ferramenta" in
         echo -e "${VIOLET}Saindo do script${NC}"
         ;;
     *)
-        echo -e "${RED}Opção inválida! Saindo do script.${NC}"
+        echo -e "${RED}OpÃ§Ã£o invÃ¡lida! Saindo do script.${NC}"
         ;;
 esac
